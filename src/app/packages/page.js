@@ -2,10 +2,22 @@
 
 import { useState, useEffect, useRef } from 'react';
 import React from 'react';
-import { FaPen, FaBullhorn, FaCrown, FaGlobe } from 'react-icons/fa';
+import { FaPen, FaBullhorn, FaCrown, FaGlobe, FaMicrophone } from 'react-icons/fa';
 import Link from 'next/link';
 
 const packages = [
+  {
+  name: "Share Your Voice",
+  price: 0,
+  icon: FaMicrophone, // Assuming you have this icon imported, if not, you may need to import it
+  features: [
+    "Submit your personal testimonial for FREE",
+    "Basic moderation and review",
+    "Publication on our platform",
+    "Opportunity to inspire others"
+  ],
+  warning: "By submitting your story, you grant us permission to use it for commercial purposes. Your story may be featured in our marketing materials or publications."
+  },
   {
     name: "Share Your Story",
     price: 2999,
@@ -77,13 +89,7 @@ const packages = [
 ];
 
 export default function PackagesPage() {
-  const handleCheckout = (packageName, price) => {
-    // This is a placeholder function. In a real implementation,
-    // you would integrate with Stripe here to redirect to the checkout page.
-    console.log(`Redirecting to Stripe Checkout for ${packageName} with deposit of $${price * 0.1}`);
-    // Example of how you might redirect to a Stripe Checkout page:
-    // window.location.href = `https://your-stripe-checkout-url.com/?package=${packageName}&price=${price * 0.1}`;
-  };
+
 
   const h1Ref = useRef(null);
   const h2Ref = useRef(null); 
@@ -121,8 +127,7 @@ export default function PackagesPage() {
             <img src="/underline.svg" style={{ width: h1Width }} />
         </div>
       <p className="packages-intro">
-        Choose the package that best fits your vision. By making a 10% deposit, 
-        you're taking the first step towards sharing your story with the world.
+        Choose the package that best fits your vision & let's get started!
       </p>
       
       <div className="packages-grid">
@@ -130,17 +135,23 @@ export default function PackagesPage() {
           <div key={index} className="package-card">
             <pkg.icon className="package-icon" />
             <h2 className="package-name">{pkg.name}</h2>
-            <p className="package-price">${pkg.price.toLocaleString()}</p>
             <ul className="package-features">
               {pkg.features.map((feature, featureIndex) => (
                 <li key={featureIndex}>{feature}</li>
               ))}
             </ul>
+
+            {pkg.warning && (
+              <div className="warning">
+                <p><strong>Warning:</strong> {pkg.warning}</p>
+              </div>
+            )}
+
             <button 
               className="package-cta" 
               onClick={() => handleCheckout(pkg.name, pkg.price)}
             >
-              Reserve Your Spot - ${(pkg.price * 0.1).toLocaleString()} Deposit
+              Get Started Now
             </button>
           </div>
         ))}
@@ -149,9 +160,9 @@ export default function PackagesPage() {
       <div className="process-explanation">
         <h2>How It Works</h2>
         <ol>
-          <li>Choose your preferred package and click "Reserve Your Spot".</li>
-          <li>You'll be directed to a secure Stripe Checkout page to pay a 10% deposit.</li>
-          <li>Within 24 hours of your payment, one of our dedicated sales representatives will contact you.</li>
+          <li>Choose your preferred package and click "Get Started Now".</li>
+          <li>You'll be directed where you can either fill-in the form with your details, or contact us directly using email/phone.</li>
+          <li>Within 24 hours of filling the form or emailing us, one of our dedicated sales representatives will contact you.</li>
           <li>In a personalized consultation, we'll explore your needs in depth and tailor the package to your unique story.</li>
           <li>Once we've refined the details, we'll begin the exciting journey of bringing your story to life!</li>
         </ol>

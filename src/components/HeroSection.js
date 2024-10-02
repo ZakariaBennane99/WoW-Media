@@ -15,8 +15,8 @@ export default function HeroSection() {
           <h1 className="hero-title">Empowering Women to Share Their Stories</h1>
           <p className="hero-subtitle">From writing to worldwide tours, we offer the support you need to publish and promote your inspiring story.</p>
           <div className="hero-cta">
-            <Link href="/packages" className="btn btn-primary">Explore Our Packages</Link>
-            <Link href="/how-it-works" className="btn btn-secondary">How It Works</Link>
+            <Link href="/contact" className="btn btn-primary">Book A Free Consultation</Link>
+            <Link href="/packages" className="btn btn-secondary">Get Started Now</Link>
           </div>
         </div>
       </div>

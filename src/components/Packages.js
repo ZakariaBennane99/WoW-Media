@@ -3,13 +3,24 @@
 
 
 import Link from 'next/link';
-import { FaPen, FaBullhorn, FaCrown, FaGlobe } from 'react-icons/fa';
+import { FaPen, FaBullhorn, FaCrown, FaGlobe, FaMicrophone } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 
 const packages = [
   {
+    name: "Share Your Voice",
+    price: 0,
+    icon: FaMicrophone, // Assuming you have this icon imported, if not, you may need to import it
+    features: [
+      "Submit your personal testimonial for FREE",
+      "Basic moderation and review",
+      "Publication on our platform",
+      "Opportunity to inspire others"
+    ],
+    warning: "By submitting your story, you grant us permission to use it for commercial purposes. Your story may be featured in our marketing materials or publications."
+  },
+  {
     name: "Share Your Story",
-    price: "$2,999",
     icon: FaPen,
     features: [
       "20,000-word ghostwritten autobiography",
@@ -23,7 +34,6 @@ const packages = [
   },
   {
     name: "Amplify Your Voice",
-    price: "$4,999",
     icon: FaBullhorn,
     features: [
       "40,000-word ghostwritten autobiography",
@@ -40,7 +50,6 @@ const packages = [
   },
   {
     name: "Empower Your Legacy",
-    price: "$7,999",
     icon: FaCrown,
     features: [
       "60,000-word ghostwritten autobiography",
@@ -58,7 +67,6 @@ const packages = [
   },
   {
     name: "Inspire the World",
-    price: "$11,999",
     icon: FaGlobe,
     features: [
       "80,000-word ghostwritten autobiography",
@@ -114,12 +122,18 @@ export default function Packages() {
             <div key={index} className="package-card">
               <pkg.icon className="package-icon" />
               <h3 className="package-name">{pkg.name}</h3>
-              <p className="package-price"><b>{pkg.price}</b></p>
               <ul className="package-features">
                 {pkg.features.map((feature, featureIndex) => (
                   <li key={featureIndex}>{feature}</li>
                 ))}
               </ul>
+
+              {pkg.warning && (
+              <div className="warning">
+                <p><strong>Warning:</strong> {pkg.warning}</p>
+              </div>
+              )}
+
             </div>
           ))}
         </div>
